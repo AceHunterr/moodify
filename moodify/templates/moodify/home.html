@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h1>Welcome to Moodify </h1>
+  <h3>Press the below button to start analyzing your mood.</h3>
+  
+  <form action="{% url 'recommendation'  %}" method="POST">
+    {% csrf_token %}
+    <button type="submit" value={{ emotion }} onclick={{emotion}}>Start</button>
+  </form>
+  
+  
+{% endblock content %}

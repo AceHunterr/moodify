@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+
+
+{% block content %}
+
+    <h4>Emotion: {{emotion}}</h4>
+    <h3>Recommended Songs:</h3>
+    <form action="{% url 'recommended_songs'%}" method="POST">
+        {% csrf_token %}
+        <button>Recommend Songs</button>
+    </form>
+    <!-- {% for song in songs_list %}
+        <h3>Song : <a href = "{{song.uri}}">{{song.name}}</a></h3> 
+        <h4>Artist: </h4>
+        {% for artist in song.artists%}
+            {{artist.name}}
+        {% endfor %}
+            
+    {% endfor %} -->
+
+{% endblock content %}
