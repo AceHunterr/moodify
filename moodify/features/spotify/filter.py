@@ -32,7 +32,7 @@ sp = spotipy.Spotify(auth_manager=SpotifyOAuth(scope=scopes))
 
 
 def retrieve_songs():
-    top_tracks = sp.current_user_top_tracks(limit=2)
+    top_tracks = sp.current_user_top_tracks(limit=10)
 
     for idx, item in enumerate(top_tracks['items']):
         uri = item['uri']

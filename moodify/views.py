@@ -1,11 +1,6 @@
 from django.shortcuts import render
 from .features.spotify.filter import happy_songs,sad_songs,high_energy_songs,calm_songs,cheerful_songs,neutral_songs,disgust_songs
-# from .face_detection.testEmotionDetector import  em
 
-# emotion = em
-def get_emotion():
-    emotion = "sad"
-    return emotion
 
 emotion_to_songs = {
     "happy" : happy_songs,
@@ -16,22 +11,34 @@ emotion_to_songs = {
     "neutral" : neutral_songs,
     "disgust" : disgust_songs
 }
+ 
+emotion_passed = None
+
 
 def home(request):
-    # emotion = "sad"
     return render(request , "moodify/home.html",{
-        "emotion" : get_emotion
+        # "emotion" : get_emotion
     })
 
 def recommendation(request):
+    # from .face_detection.testEmotionDetector import  em
+    # emotion = em
+ 
     emotion = "sad"
-    return render(request , "moodify/recommendation.html") 
+    global emotion_passed 
+    emotion_passed = emotion
+
+    return render(request , "moodify/recommendation.html",{
+        "emotion" : emotion
+    }) 
 
 def recommended_songs(request):
+
+    emotion = emotion_passed
     return render(request, "moodify/recommended_songs.html",{
-        # "songs_list" : emotion_to_songs[emotion], 
-        # "emotion" : emotion
+        "songs_list" : emotion_to_songs[emotion], 
+        "emotion" : emotion
     })
 
-def recommended_videos(request):
+def recommended_videos(request): 
     return None
