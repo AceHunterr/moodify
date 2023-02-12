@@ -1,16 +1,244 @@
+<!-- STYLING -->
+
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+    * {
+        margin: 0px;
+        padding: 0px;
+        border: none;
+        box-sizing: border-box;
+        overflow-x: none;
+        all: none;
+
+        font-family: Roboto, sans;
+    }
+
+    .main-container {
+        width: 100%;
+        height: 100%;
+
+        background-image: url("https://media.istockphoto.com/id/675020930/photo/textured-dark-vignette-black-background.jpg?b=1&s=170667a&w=0&k=20&c=nBSWubcuVC-VcrpXgtD4k1eIM_E2edMH9v7oJAqkCWo=");
+        background-image: no-repeat;
+        background-position: center;
+        background-size: cover;
+
+        color: white;
+
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .sub-container {
+        /* border: 2px solid red; */
+
+        width: 500px;
+        height: 90%;
+
+        display: flex;
+        flex-direction: column;
+        /* justify-content: center; */
+
+        justify-content: flex-start;
+        align-items: center;
+
+        padding: 20px;
+    }
+
+    .heading-emo {
+        font-size: 3.5rem;
+        font-weight: 800;
+
+        margin-bottom: 40px;
+        margin-top: 20px;
+
+        text-transform: capitalize;
+        text-shadow: 2px 2px 4px #62FCAF;
+    }
+
+    .emo-img {
+        width: 100%;
+        height: 300px;
+        /* border: 2px solid green; */
+
+        margin-top: 20px;
+        margin-bottom: 40px;
+    }
+
+
+
+
+
+
+    /* emo bot */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    /* button */
+
+    .button-container-1 {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+
+	 width: 300px;
+	 height: 65px;
+	 margin-left: auto;
+	 margin-right: auto;
+	 margin-top: 6vh;
+	 overflow: hidden;
+	 border: 1px solid;
+	 font-family: 'Lato', sans-serif;
+	 font-weight: 300;
+	 font-size: 1rem;
+	 transition: 0.5s;
+	 letter-spacing: 1px;
+	 border-radius: 2px;
+
+	 border: 2px solid #62FCAF;
+
+	 box-shadow: 2px 2px 4px #62FCAF;
+
+	 background-color: rgb(0, 0, 0);
+}
+ .button-container-1 button {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+
+	 width: 101%;
+	 height: 100%;
+	 font-family: 'Lato', sans-serif;
+	 font-weight: 300;
+	 font-size: 1rem;
+	 letter-spacing: 1px;
+	 font-weight: bold;
+
+	 background: #62FCAF;
+	 box-shadow: 2px 2px 4px #ffffff;
+
+	 -webkit-mask: url("https://raw.githubusercontent.com/robin-dela/css-mask-animation/master/img/nature-sprite.png");
+	 mask: url("https://raw.githubusercontent.com/robin-dela/css-mask-animation/master/img/nature-sprite.png");
+	 -webkit-mask-size: 2300% 100%;
+	 mask-size: 2300% 100%;
+	 color: black;
+	 cursor: pointer;
+
+	 border: 2px solid #62FCAF;
+	 -webkit-animation: ani2 0.7s steps(22) forwards;
+	 animation: ani2 0.7s steps(22) forwards;
+}
+ .button-container-1 button:hover {
+	 -webkit-animation: ani 0.7s steps(22) forwards;
+	 animation: ani 0.7s steps(22) forwards;
+
+	 	display: flex;
+		align-items: center;
+		justify-content: center;
+
+		box-shadow: 2px 2px 4px #ffffff;
+
+	}
+	.mas {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		color: #62FCAF;
+	 width: 100%;
+	 font-family: 'Lato', sans-serif;
+	 font-weight: 300;
+	 position: absolute;
+	 font-size: 1rem;
+	 /* margin-top: 17px; */
+	 overflow: hidden;
+	 font-weight: bold;
+}
+ @-webkit-keyframes ani {
+	 from {
+		 -webkit-mask-position: 0 0;
+		 mask-position: 0 0;
+	}
+	 to {
+		 -webkit-mask-position: 100% 0;
+		 mask-position: 100% 0;
+	}
+}
+ @keyframes ani {
+	 from {
+		 -webkit-mask-position: 0 0;
+		 mask-position: 0 0;
+	}
+	 to {
+		 -webkit-mask-position: 100% 0;
+		 mask-position: 100% 0;
+	}
+}
+ @-webkit-keyframes ani2 {
+	 from {
+		 -webkit-mask-position: 100% 0;
+		 mask-position: 100% 0;
+	}
+	 to {
+		 -webkit-mask-position: 0 0;
+		 mask-position: 0 0;
+	}
+}
+ @keyframes ani2 {
+	 from {
+		 -webkit-mask-position: 100% 0;
+		 mask-position: 100% 0;
+	}
+	 to {
+		 -webkit-mask-position: 0 0;
+		 mask-position: 0 0;
+	}
+}
+
+</style>
+
+
+
+
 {% extends "base.html" %}
 
 
 
 {% block content %}
 
-    <h4>Emotion: {{emotion}}</h4>
-    <h3>Recommended Songs:</h3>
-    <form action="{% url 'recommended_songs' %}" method="POST">
-        {% csrf_token %}
-        <button>Recommend Songs</button>
-    </form>
-    <!-- {% for song in songs_list %}
+<div class="main-container">
+    <div class="sub-container">
+
+        <div class="heading-emo">
+            <h4>Emotion : {{emotion}}</h4>
+        </div>
+
+        <!-- dekhte ye section kal -->
+        <div class="emo-img">
+			<img src="https://i.pinimg.com/236x/cd/25/40/cd2540de72e12fb3688ceb77c41af105.jpg" alt="">
+        </div>
+
+        <div class="button-container-1">
+            <form action="{% url 'recommended_songs' %}" method="POST">
+                {% csrf_token %}
+                <!-- <span class="mas">Recommend Songs</span> -->
+                <button class="button:hover">Recommend Songs</button>
+            </form>
+        </div>
+        <!-- {% for song in songs_list %}
         <h3>Song : <a href = "{{song.uri}}">{{song.name}}</a></h3> 
         <h4>Artist: </h4>
         {% for artist in song.artists%}
@@ -19,4 +247,11 @@
             
     {% endfor %} -->
 
-{% endblock content %}
+        {% endblock content %}
+
+    </div>
+</div>
+
+
+
+<!-- <script></script> -->

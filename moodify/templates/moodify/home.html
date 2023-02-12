@@ -1,13 +1,685 @@
 {% extends "base.html" %}
 
 {% block content %}
-  <h1>Welcome to Moodify </h1>
-  <h3>Press the below button to start analyzing your mood.</h3>
+  <style>
+    /* STYLING INTRO PAGE */
+
+*
+{
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+    /* overflow: hidden; */
+    border: none;
+    all: none;
+}
+
+.main-container-intro
+{
+    width: 100%;
+    height: 100vh;
+
+    background-image: url("https://media.istockphoto.com/id/675020930/photo/textured-dark-vignette-black-background.jpg?b=1&s=170667a&w=0&k=20&c=nBSWubcuVC-VcrpXgtD4k1eIM_E2edMH9v7oJAqkCWo=");
+    background-image: no-repeat;
+    background-position: center;
+    background-size: cover;
+    /* background-color: black; */
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+}
+
+.intro-content-container
+{
+    /* border: 2px solid red; */
+
+    width: 500px;
+    height: 90%;
+
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+}
+
+.img-intro
+{
+	width: 250px;
+	height: 250px;
+}
+
+
+
+
+
+
+
+
+
+:root {
+	--eye-size:20vmin;
+	--eye-gap:14vmin;
+	--eye-color:#62FCAF;
+	/* --background: rgba(0, 0, 0, 0); */
+	/* --user-button-main:#D770AD; */
+  }
+
+  .face-container {
+
+	/* overflow: none; */
+	width: 100%;
+	height: 300px;
+
+	margin-top: -50px;
+
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: row;
+
+	place-items: center;
+	background: var(--background);
+
+	/* border: 2px solid red; */
+  }
+  @keyframes float {
+	0%, 100% {
+	  transform: translateY(-5%);
+	}
+	50% {
+	  transform: translateY(5%);
+	}
+  }
+.face {
+	--left-lower-rotation:0deg;
+	--left-lower-position:0%;
+	--left-upper-rotation:0deg;
+	--left-upper-position:0%;
+	--right-lower-rotation:0deg;
+	--right-lower-position:0%;
+	--right-upper-rotation:0deg;
+	--right-upper-position:0%;
+	--face-rotation-x:0deg;
+	--face-rotation-y:0deg;
+	--face-rotation-z:0deg;
+	display: grid;
+	grid-template-columns: var(--eye-size) var(--eye-gap) var(--eye-size);
+	grid-template-rows: var(--eye-size);
+	grid-template-areas: "left . right";
+	filter: blur(1vmin) contrast(8);
+	transform: translateZ(8vmin) rotateX(var(--face-rotation-x)) rotateY(var(--face-rotation-y)) rotateZ(var(--face-rotation-z));
+	transition: 0.75s cubic-bezier(0.25, 0.5, 0.5, 1);
+	mix-blend-mode: lighten;
+  }
+.face .eye {
+	position: relative;
+	background: #83f7bd;
+	border-radius: 100%;
+	overflow: hidden;
+	box-shadow: 0 0 0 2vmin black;
+  }
+.face .eye, body .face .eye * {
+	transition: 0.5s cubic-bezier(0.75, 0.25, 0.25, 0.75);
+  }
+.face .eye > div {
+	--rotation:0deg;
+	--position:0%;
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	transform: rotate(var(--rotation));
+  }
+.face .eye > div .lid {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	background: black;
+  }
+.face .eye > div.lower .lid {
+	top: calc(100% - var(--position));
+  }
+.face .eye > div.upper .lid {
+	bottom: calc(100% - var(--position));
+  }
+.face .eye.left {
+	grid-area: left;
+  }
+.face .eye.left .lower {
+	--rotation:var(--left-lower-rotation);
+	--position:var(--left-lower-position);
+  }
+.face .eye.left .upper {
+	--rotation:var(--left-upper-rotation);
+	--position:var(--left-upper-position);
+  }
+.face .eye.right {
+	grid-area: right;
+  }
+.face .eye.right .lower {
+	--rotation:var(--right-lower-rotation);
+	--position:var(--right-lower-position);
+  }
+.face .eye.right .upper {
+	--rotation:var(--right-upper-rotation);
+	--position:var(--right-upper-position);
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* BUTTON INTRO PAGE */
+
+.button-intro
+{
+	margin-top: -20px;
+}
+
+ .button-container-1 {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+
+	 width: 300px;
+	 height: 65px;
+	 margin-left: auto;
+	 margin-right: auto;
+	 margin-top: 6vh;
+	 overflow: hidden;
+	 border: 1px solid;
+	 font-family: 'Lato', sans-serif;
+	 font-weight: 300;
+	 font-size: 1rem;
+	 transition: 0.5s;
+	 letter-spacing: 1px;
+	 border-radius: 2px;
+
+	 border: 2px solid #62FCAF;
+
+	 box-shadow: 2px 2px 4px #62FCAF;
+
+	 background-color: rgb(0, 0, 0);
+}
+ .button-container-1 button {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+
+	 width: 101%;
+	 height: 100%;
+	 font-family: 'Lato', sans-serif;
+	 font-weight: 300;
+	 font-size: 1rem;
+	 letter-spacing: 1px;
+	 font-weight: bold;
+
+	 background: #62FCAF;
+	 box-shadow: 2px 2px 4px #ffffff;
+
+	 -webkit-mask: url("https://raw.githubusercontent.com/robin-dela/css-mask-animation/master/img/nature-sprite.png");
+	 mask: url("https://raw.githubusercontent.com/robin-dela/css-mask-animation/master/img/nature-sprite.png");
+	 -webkit-mask-size: 2300% 100%;
+	 mask-size: 2300% 100%;
+	 color: black;
+	 cursor: pointer;
+
+	 border: 2px solid #62FCAF;
+	 -webkit-animation: ani2 0.7s steps(22) forwards;
+	 animation: ani2 0.7s steps(22) forwards;
+}
+ .button-container-1 button:hover {
+	 -webkit-animation: ani 0.7s steps(22) forwards;
+	 animation: ani 0.7s steps(22) forwards;
+
+	 	display: flex;
+		align-items: center;
+		justify-content: center;
+
+		box-shadow: 2px 2px 4px #ffffff;
+
+	}
+	.mas {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		color: #62FCAF;
+	 width: 100%;
+	 font-family: 'Lato', sans-serif;
+	 font-weight: 300;
+	 position: absolute;
+	 font-size: 1rem;
+	 /* margin-top: 17px; */
+	 overflow: hidden;
+	 font-weight: bold;
+}
+ @-webkit-keyframes ani {
+	 from {
+		 -webkit-mask-position: 0 0;
+		 mask-position: 0 0;
+	}
+	 to {
+		 -webkit-mask-position: 100% 0;
+		 mask-position: 100% 0;
+	}
+}
+ @keyframes ani {
+	 from {
+		 -webkit-mask-position: 0 0;
+		 mask-position: 0 0;
+	}
+	 to {
+		 -webkit-mask-position: 100% 0;
+		 mask-position: 100% 0;
+	}
+}
+ @-webkit-keyframes ani2 {
+	 from {
+		 -webkit-mask-position: 100% 0;
+		 mask-position: 100% 0;
+	}
+	 to {
+		 -webkit-mask-position: 0 0;
+		 mask-position: 0 0;
+	}
+}
+ @keyframes ani2 {
+	 from {
+		 -webkit-mask-position: 100% 0;
+		 mask-position: 100% 0;
+	}
+	 to {
+		 -webkit-mask-position: 0 0;
+		 mask-position: 0 0;
+	}
+}
+
+  </style>
+
   
-  <form action="{% url 'recommendation'  %}" method="POST">
+  <!-- <form action="{% url 'recommendation'  %}" method="POST">
     {% csrf_token %}
     <button type="submit">Start</button>
-  </form>
+  </form> -->
   
   
+    <div class="main-container-intro">
+      <div class="intro-content-container">
+        <div class="image-intro">
+          <!-- <img class="img-intro" src="./assets/face_scan.png" alt="" /> -->
+          <!-- <h1>Welcome to Moodify </h1>
+          <h3>Press the below button to start analyzing your mood.</h3>
+           -->
+          <div class="face-container">
+            <div class="face" style="--left-lower-rotation:20deg;--left-lower-position:40%;--left-upper-rotation:0deg;--left-upper-position:0%;--right-lower-rotation:-20deg;--right-lower-position:40%;--right-upper-rotation:0deg;--right-upper-position:0%;--face-rotation-x:0deg;--face-rotation-y:0deg;--face-rotation-z:0deg;">
+              <div class="eye left">
+                <div class="lower">
+                  <div class="lid"></div>
+                </div>
+                <div class="upper">
+                  <div class="lid"></div>
+                </div>
+              </div>
+              <div class="eye right">
+                <div class="lower">
+                  <div class="lid"></div>
+                </div>
+                <div class="upper">
+                  <div class="lid"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+  
+        </div>
+  
+        <div class="button-intro">
+          <form action="{% url 'recommendation'  %}" method="POST">
+            {% csrf_token %}
+              <div class="button-container-1">
+                <span class="mas">START SCANNING</span>
+                <button id="work" type="submit" name="Hover">START SCANNING</button>
+              </div>
+          </form>
+        
+
+  
+        </div>
+      </div>
+    </div>
+  
+    <!-- partial -->
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js'></script>
+  <script>
+    let states = {
+      neutral: { //Post your other emotions as a comment
+          face: {
+              rotationX:0,
+              rotationY:0,
+              rotationZ:0
+          },
+          left: {
+              lower:{
+                  rotation:0,
+                  position:0
+              },
+              upper:{
+                  rotation:0,
+                  position:0
+              }
+          },
+          right: {
+              lower:{
+                  rotation:0,
+                  position:0
+              },
+              upper:{
+                  rotation:0,
+                  position:0
+              }
+          }
+      },
+      happy: {
+          face: {
+              rotationX:0,
+              rotationY:0,
+              rotationZ:0
+          },
+          left: {
+              lower:{
+                  rotation:20,
+                  position:40
+              },
+              upper:{
+                  rotation:0,
+                  position:0
+              }
+          },
+          right: {
+              lower:{
+                  rotation:-20,
+                  position:40
+              },
+              upper:{
+                  rotation:0,
+                  position:0
+              }
+          }
+      },
+      sad: {
+          face: {
+              rotationX:0,
+              rotationY:0,
+              rotationZ:0
+          },
+          left: {
+              lower:{
+                  rotation:0,
+                  position:0
+              },
+              upper:{
+                  rotation:-20,
+                  position:40
+              }
+          },
+          right: {
+              lower:{
+                  rotation:0,
+                  position:0
+              },
+              upper:{
+                  rotation:20,
+                  position:40
+              }
+          }
+      },
+      close: {
+          face: {
+              rotationX:-20,
+              rotationY:0,
+              rotationZ:0
+          },
+          left: {
+              lower:{
+                  rotation:0,
+                  position:45
+              },
+              upper:{
+                  rotation:0,
+                  position:45
+              }
+          },
+          right: {
+              lower:{
+                  rotation:0,
+                  position:45
+              },
+              upper:{
+                  rotation:0,
+                  position:45
+              }
+          }
+      },
+      angry: {
+          face: {
+              rotationX:-10,
+              rotationY:0,
+              rotationZ:0
+          },
+          left: {
+              lower:{
+                  rotation:0,
+                  position:0
+              },
+              upper:{
+                  rotation:20,
+                  position:40
+              }
+          },
+          right: {
+              lower:{
+                  rotation:0,
+                  position:0
+              },
+              upper:{
+                  rotation:-20,
+                  position:40
+              }
+          }
+      },
+      confused: {
+          face: {
+              rotationX:0,
+              rotationY:0,
+              rotationZ:0
+          },
+          left: {
+              lower:{
+                  rotation:0,
+                  position:0
+              },
+              upper:{
+                  rotation:0,
+                  position:40
+              }
+          },
+          right: {
+              lower:{
+                  rotation:0,
+                  position:0
+              },
+              upper:{
+                  rotation:0,
+                  position:0
+              }
+          }
+      },
+      suspicious: {
+          face: {
+              rotationX:0,
+              rotationY:0,
+              rotationZ:0
+          },
+          left: {
+              lower:{
+                  rotation:-4,
+                  position:20
+              },
+              upper:{
+                  rotation:4,
+                  position:20
+              }
+          },
+          right: {
+              lower:{
+                  rotation:4,
+                  position:20
+              },
+              upper:{
+                  rotation:-4,
+                  position:20
+              }
+          }
+      },
+      pain: {
+          face: {
+              rotationX:0,
+              rotationY:0,
+              rotationZ:0
+          },
+          left: {
+              lower:{
+                  rotation:10,
+                  position:20
+              },
+              upper:{
+                  rotation:-10,
+                  position:20
+              }
+          },
+          right: {
+              lower:{
+                  rotation:-10,
+                  position:20
+              },
+              upper:{
+                  rotation:10,
+                  position:20
+              }
+          }
+      },
+      unamused: {
+          face: {
+              rotationX:0,
+              rotationY:0,
+              rotationZ:0
+          },
+          left: {
+              lower:{
+                  rotation:0,
+                  position:0
+              },
+              upper:{
+                  rotation:0,
+                  position:40
+              }
+          },
+          right: {
+              lower:{
+                  rotation:0,
+                  position:0
+              },
+              upper:{
+                  rotation:0,
+                  position:40
+              }
+          }
+      },
+      unsure: {
+          face: {
+              rotationX:0,
+              rotationY:0,
+              rotationZ:7
+          },
+          left: {
+              lower:{
+                  rotation:10,
+                  position:20
+              },
+              upper:{
+                  rotation:-10,
+                  position:20
+              }
+          },
+          right: {
+              lower:{
+                  rotation:0,
+                  position:0
+              },
+              upper:{
+                  rotation:0,
+                  position:0
+              }
+          }
+      }
+  }
+  
+  const setState = state => {
+      console.log(state);
+      if(states[state] == undefined) return;
+      $(".face").attr("style", `
+          --left-lower-rotation:${states[state].left.lower.rotation}deg;
+          --left-lower-position:${states[state].left.lower.position}%;
+          --left-upper-rotation:${states[state].left.upper.rotation}deg;
+          --left-upper-position:${states[state].left.upper.position}%;
+          --right-lower-rotation:${states[state].right.lower.rotation}deg;
+          --right-lower-position:${states[state].right.lower.position}%;
+          --right-upper-rotation:${states[state].right.upper.rotation}deg;
+          --right-upper-position:${states[state].right.upper.position}%;
+          --face-rotation-x:${states[state].face.rotationX}deg;
+          --face-rotation-y:${states[state].face.rotationY}deg;
+          --face-rotation-z:${states[state].face.rotationZ}deg;
+      `);
+  }
+  
+  let emotions = Object.keys(states);
+  //let index = 3;
+  let previous = ["happy"];
+  setState("happy");
+  
+  const nextState = () => {
+      let ind = Math.floor(Math.random()*emotions.length);
+      if(previous.indexOf(ind) != -1) return nextState();
+      previous.push(ind);
+      previous = previous.slice(-4); //Save most recent 4 states to not use
+      return ind;
+  }
+  
+  setInterval(() => {
+      setState(emotions[nextState()])
+      //setState(emotions[index%emotions.length]);
+      //index++;
+  }, 1500);
+  </script>
+  
+  </body>
+  
+  </html>
+
+
+
+
 {% endblock content %}

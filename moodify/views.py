@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from .features.spotify.filter import happy_songs,sad_songs,high_energy_songs,calm_songs,cheerful_songs,neutral_songs,disgust_songs
-
+import random
 
 emotion_to_songs = {
     "happy" : happy_songs,
@@ -21,10 +21,12 @@ def home(request):
     })
 
 def recommendation(request):
-    # from .face_detection.testEmotionDetector import  em
-    # emotion = em
- 
-    emotion = "sad"
+    
+    from .face_detection.testEmotionDetector import  em
+    emotion = em 
+    emotion_passed = None
+    print("Hello World")
+    # emotion = "sad"
     global emotion_passed 
     emotion_passed = emotion
 
@@ -41,4 +43,4 @@ def recommended_songs(request):
     })
 
 def recommended_videos(request): 
-    return None
+    return None  
