@@ -24,7 +24,7 @@ def recommendation(request):
     
     from .face_detection.testEmotionDetector import  em
     emotion = em 
-    emotion_passed = None
+    # emotion_passed = None
     print("Hello World")
     # emotion = "sad"
     global emotion_passed 
